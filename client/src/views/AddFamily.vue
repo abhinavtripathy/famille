@@ -40,6 +40,12 @@
  </div>
 </b-container>
 <br>
+<!-- <b-form-input
+      id="inline-form-input-name"
+      class="mb-2 mr-sm-2 mb-sm-0"
+      placeholder="Parents IDs"
+      v-model="main_member_id"
+    ></b-form-input> -->
  <b-button v-b-modal.modal-1 variant="primary" @click="submitForm">Submit!</b-button>
  <b-modal id="modal-1" title="Add Family">
     <p class="my-4">Success! You have successfully added your family!</p>
@@ -51,7 +57,8 @@
 export default {
     data() {
         return {
-            form: {}
+            form: {}, 
+            main_member_id: 0
         }
     },
     created() {
