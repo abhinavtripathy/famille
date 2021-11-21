@@ -1,4 +1,3 @@
-
 const express = require('express')
 
 const app = express();
@@ -7,6 +6,29 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 const cors = require('cors')
 app.use(cors());
+
+// Local PostgreSQL credentials
+const username = 'postgres';
+const password = 'postgres';
+
+const url = process.env.DATABASE_URL || `postgres://${username}:${password}@localhost/`;
+const db = pgp(url);
+
+
+async function connectAndRun(task) {
+    let connection = null;
+
+    try {
+        connection = await db.connect();
+        return await task(connection);
+    } finally {
+        try {
+            connection.done();
+        } catch (ignored) {
+            // ignore 
+        }
+    }
+}
 
 app.get('/test', async(req, res) => {
     res.send({'message':'success'})
