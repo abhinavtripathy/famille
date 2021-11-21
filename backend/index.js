@@ -67,7 +67,6 @@ app.get('/family', async (req, res) => {
 
 app.post('/family', async (req, res) => {
     const data = req.body
-    // console.log(data)
     for(let i in data) {
         
         if(data[i]['name'].length != 0) {
@@ -84,7 +83,6 @@ app.post('/family', async (req, res) => {
             else {
                 postFamily(data[i]['id'], data[i]['name'], null, null, data[i]['nickname'], data[i]['img'], data[i]['main_user'], null)
             }
-    
         }
     }
     res.send({
