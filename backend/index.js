@@ -6,6 +6,8 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public/'));
 app.use(express.json());
+import cors from 'cors'
+app.use(cors());
 
 // Postgres Setup
 const pgp = pgPromise({
@@ -51,7 +53,11 @@ async function connectAndRun(task) {
 //     await connectAndRun(db => db.none('create table if not exists hospital (id serial primary key,name varchar(255),driver_id int,foreign key (driver_id) references driver(id) on delete set null);'));
 // })();
 
+// Helper functions 
 
+async function postFamily(id, username, pid, ppid, title, img, main_user, tag) {
+    await connectAndRun(db => db.none('INSERT INTO family(id, username, pid, ppid, title, img, main_user, tag) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);', [id, username, pid, ppid, title, img, main_user, tag]));
+}
 
 app.get('/family', async (req, res) => {
     let result = await connectAndRun(db => db.any('select * from family order by id'))
@@ -59,6 +65,32 @@ app.get('/family', async (req, res) => {
     res.send(JSON.stringify(result))
 })
 
+app.post('/family', async (req, res) => {
+    const data = req.body
+    // console.log(data)
+    for(let i in data) {
+        
+        if(data[i]['name'].length != 0) {
+            console.log(data[i])
+            
+            if(data[i]['pid'].length != 0 && data[i]['ppid'].length == 0) {
+                postFamily(data[i]['id'], data[i]['name'], data[i]['pid'], null, data[i]['nickname'], data[i]['img'], data[i]['main_user'], 'partner')
+            }
+            else if(data[i]['pid'].length == 0 && data[i]['ppid'].length != 0) {
+                let pid1 = data[i]['ppid'].split(',')[0]
+                let pid2 = data[i]['ppid'].split(',')[1]
+                postFamily(data[i]['id'], data[i]['name'], pid1, pid2, data[i]['nickname'], data[i]['img'], data[i]['main_user'], null)
+            }
+            else {
+                postFamily(data[i]['id'], data[i]['name'], null, null, data[i]['nickname'], data[i]['img'], data[i]['main_user'], null)
+            }
+    
+        }
+    }
+    res.send({
+        'message': 'success'
+    });
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

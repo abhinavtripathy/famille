@@ -27,25 +27,19 @@
       id="inline-form-input-name"
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="Partner ID"
-      v-model="form[index]['partner']"
+      v-model="form[index]['pid']"
     ></b-form-input></b-col>
     <b-col><b-form-input
       id="inline-form-input-name"
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="Parents IDs"
-      v-model="form[index]['parent']"
+      v-model="form[index]['ppid']"
     ></b-form-input></b-col>
   </b-row>
   <br>
  </div>
 </b-container>
 <br>
-<!-- <b-form-input
-      id="inline-form-input-name"
-      class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="Parents IDs"
-      v-model="main_member_id"
-    ></b-form-input> -->
  <b-button v-b-modal.modal-1 variant="primary" @click="submitForm">Submit!</b-button>
  <b-modal id="modal-1" title="Add Family">
     <p class="my-4">Success! You have successfully added your family!</p>
@@ -58,17 +52,24 @@ export default {
     data() {
         return {
             form: {}, 
-            main_member_id: 0
         }
     },
     created() {
         for(let i = 1; i <= 10; i++) {
-            this.form[i] = {}
+            this.form[i] = {'id': i,'name': '', 'nickname': '', 'img': '', 'pid': '', 'ppid': '', 'main_user' : 'false'}
         }
     },
     methods: {
         submitForm () {
+            this.form[1]['main_user'] = 'true'
             console.log(this.form)
+            this.$http.post('http://localhost:3000/family', this.form)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
     }
 }

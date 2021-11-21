@@ -1,5 +1,5 @@
 create table family(
-    id serial primary key, 
+    id integer primary key, 
     username varchar(50),
     pid integer, 
     ppid integer, 
