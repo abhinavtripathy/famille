@@ -90,6 +90,12 @@ app.post('/family', async (req, res) => {
     });
 })
 
+app.get('/memories', async(req, res) => {
+    const response = await fetch('localhost:5000/test');
+    console.log(response)
+    res.send({'message':'success'})
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

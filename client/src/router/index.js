@@ -20,11 +20,19 @@ const routes = [
   },
   {
     path: '/AddFamily',
-    name: 'AddFamily',
+    name: 'Add Family Members',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AddFamily.vue')
+  }, 
+  {
+    path: '/DailyQuiz',
+    name: 'Daily Check In',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/DailyQuiz.vue')
   }, 
   {
     path: '/ViewFamily',

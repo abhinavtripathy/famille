@@ -22,3 +22,14 @@ VALUES ('Queen Elizabeth', 1, NULL, 'Queen Eliz', 'https://cdn.balkan.app/shared
 
 INSERT INTO family (username, pid, ppid, title, img, main_user, tag) 
 VALUES ('Queen Elizabeth II', 1, 2, 'The baby', 'https://cdn.balkan.app/shared/f5.png', FALSE, NULL); 
+
+
+
+create table memories(
+    name varchar(50) primary key, 
+    img varchar(100),
+    labels text,
+    happy boolean
+);
+
+drop table memories;
