@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Famille!"/>
+    <HelloWorld msg="Welcome to Famille - Helping People with Alzheimer's"/>
   </div>
 </template>
 

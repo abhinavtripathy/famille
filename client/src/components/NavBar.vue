@@ -25,13 +25,13 @@
 
 <style scoped>
 .bg-color-blue {
-  background-color: rgb(30, 72, 100);
+  background-color: rgb(179, 135, 216);
 }
 #nav a {
   font-weight: bold;
   color: #ffffff;
 }
 #nav a.router-link-exact-active {
-  color: #99999e;
+  color: #510664;
 }
 </style>
