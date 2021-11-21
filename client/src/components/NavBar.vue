@@ -16,7 +16,8 @@
        
         <router-link to="/">Home </router-link> &nbsp;&nbsp;|&nbsp;&nbsp;
       <router-link to="/about">About </router-link> &nbsp;&nbsp;|&nbsp;&nbsp;
-      <router-link to="/AddFamily">Add Family </router-link>
+      <router-link to="/AddFamily">Add Family </router-link>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <router-link to="/ViewFamily">View My Family </router-link>
 </nav>
   
 </div>

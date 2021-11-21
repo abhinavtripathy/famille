@@ -25,7 +25,17 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AddFamily.vue')
+  }, 
+  {
+    path: '/ViewFamily',
+    name: 'See My Family',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    beforeEnter() {location.href = 'http://localhost:3000/index.html'}
+    // component: () => import(/* webpackChunkName: "about" */ '../views/AddFamily.vue')
   }
+
 ]
 
 const router = new VueRouter({
