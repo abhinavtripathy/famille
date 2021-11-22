@@ -1,5 +1,6 @@
 # Famille - MetroHacks 2021
 
+![](system_diagram.jpg)
 ## Inspiration
 The underlying inspiration for the project was my grandfather who recently passed away and had Alzheimer's. Being really close to him exposed me to the troubles and difficulties for people with Alzheimer's. I saw an opportunity for a web app that could help a lot of people by assisting them through a platform fueled by family and memories. 
 
