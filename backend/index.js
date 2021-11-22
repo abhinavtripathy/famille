@@ -90,6 +90,11 @@ app.post('/family', async (req, res) => {
     });
 })
 
+app.get('/partner', async (req, res) =>{
+    let result = await connectAndRun(db => db.any('select * from family where id = 2'))
+    console.log(result)
+    res.send(JSON.stringify(result))
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
