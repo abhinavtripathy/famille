@@ -43,16 +43,6 @@ async function connectAndRun(task) {
     }
 }
 
-// Table initialization
-
-// (async () => {
-//     await connectAndRun(db => db.none('create table if not exists driver (id serial primary key,password varchar (255),first_name varchar(255),last_name varchar (255),age integer,phone varchar (20),email varchar (255),car_make varchar (255),car_type varchar(255),car_model varchar (255),car_color varchar (255),car_plate varchar (255),verified boolean);'));
-
-//     await connectAndRun(db => db.none('create table if not exists patient (id serial primary key,password varchar (255),first_name varchar(255),last_name varchar (255),age integer,phone varchar (20),email varchar (255),emergency_phone varchar (20),home_address varchar (255),pickup varchar (255),driver_id integer,current_status varchar (30), pickup_time varchar (50), foreign key (driver_id) references driver(id) on delete set null);'));
-
-//     await connectAndRun(db => db.none('create table if not exists hospital (id serial primary key,name varchar(255),driver_id int,foreign key (driver_id) references driver(id) on delete set null);'));
-// })();
-
 // Helper functions 
 
 async function postFamily(id, username, pid, ppid, title, img, main_user, tag) {
