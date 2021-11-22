@@ -1,0 +1,28 @@
+version: "3"
+services:
+  backend:
+    build: backend/Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+
+  vision:
+    build: vision/Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
+  
+  client:
+    build: client/Dockerfile
+    depends_on:
+      - postgres
+    ports:
+      - "80880:8080"
+
+  postgres:
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      DATABASE_PASSOWRD: postgres
