@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h3>Family Memories!</h3>
     <div id="box">
         <b-row>
 <b-card
