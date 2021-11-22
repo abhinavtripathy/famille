@@ -42,7 +42,23 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     beforeEnter() {location.href = 'http://localhost:3000/index.html'}
     // component: () => import(/* webpackChunkName: "about" */ '../views/AddFamily.vue')
-  }
+  },
+  {
+    path: '/AddMemories',
+    name: 'Add Family Memories',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AddMemories.vue')
+  }, 
+  {
+    path: '/ViewMemories',
+    name: 'View My Memories',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Memories.vue')
+  }, 
 
 ]
 

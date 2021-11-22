@@ -1,11 +1,23 @@
 const express = require('express')
 
+const pgPromise = require('pg-promise')
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
 const cors = require('cors')
 app.use(cors());
+
+// Postgres Setup
+const pgp = pgPromise({
+    connect(client) {
+        console.log('Connected to database:', client.connectionParameters.database);
+    },
+    disconnect(client) {
+        console.log('Disconnected from database:', client.connectionParameters.database);
+    }
+
+});
 
 // Local PostgreSQL credentials
 const username = 'postgres';
@@ -30,13 +42,18 @@ async function connectAndRun(task) {
     }
 }
 
-app.get('/test', async(req, res) => {
-    res.send({'message':'success'})
-})
 
-app.get('/vision', async(req, res) => {
-    let data = await isHappy("https://images.megapixl.com/5267/52672071.jpg")
-    res.send({'message':JSON.stringify(data)})
+app.post('/vision', async(req, res) => {
+    let data = req.body
+
+    for(let i in data) {
+        if(data[i]['name'].length != 0) {
+            let visionData = await isHappy(data[i]['img'])
+            await connectAndRun(db => db.none('INSERT INTO memories(name, img, labels, happy) VALUES ($1, $2, $3, $4);', [data[i]['name'], data[i]['img'], visionData[1], visionData[0]]));
+        }
+    }
+    
+    res.send({'message':'success'})
 })
 
 async function isHappy(img_link) {
