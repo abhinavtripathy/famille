@@ -20,7 +20,7 @@
     <b-button href="#" variant="primary">Go somewhere</b-button>
   </b-card>
         </b-row>
-  
+        
   </div>
 </div>
 </template>
@@ -36,21 +36,29 @@
 export default {
     data() {
         return {
-            memories: []
+            memories: null
         }
     },
     created() {
         this.getMemories()
+        console.log("hello")
     },
     methods: {
-        getMemories () {
-            this.$http.get('http://localhost:5000/memories')
-            .then(function (response) {
-                this.memories = response
+        getMemories: function () {
+            // this.$http.get('http://localhost:5000/memories')
+            // .then(function (response) {
+            //     // this.memories = response
+            //     // console.log(response['data'])
+                
+            //     pushData(response['data'])
+                
+            // })
+            // .catch(function () {
+            //     console.log("error")
+            // });
+            this.$http.get('http://localhost:5000/memories').then(response => { 
+            this.memories = response['data']
             })
-            .catch(function (error) {
-                console.log(error);
-            });
         }
     }
 }
