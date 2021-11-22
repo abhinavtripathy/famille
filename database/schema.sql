@@ -33,3 +33,5 @@ create table memories(
 );
 
 drop table memories;
+
+delete from memories;
