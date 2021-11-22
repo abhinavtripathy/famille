@@ -42,6 +42,12 @@ async function connectAndRun(task) {
     }
 }
 
+app.get('/memories', async(req, res) => {
+
+    let result = await connectAndRun(db => db.any('select * from memories'))
+    console.log(result)
+    res.send(JSON.stringify(result))
+})
 
 app.post('/vision', async(req, res) => {
     let data = req.body
