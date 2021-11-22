@@ -18,7 +18,7 @@
       {{index.labels}}
     </b-card-text>
 
-    <b-button href="#" variant="primary">Go somewhere</b-button>
+    <b-button href="localhost:3000/index.html" variant="primary">View Family Tree</b-button>
   </b-card>
         </b-row>
         

@@ -4,7 +4,7 @@ create table family(
     pid integer, 
     ppid integer, 
     title varchar(50),
-    img varchar(100),
+    img text,
     main_user boolean, 
     tag varchar(20)
 );
@@ -27,7 +27,7 @@ VALUES ('Queen Elizabeth II', 1, 2, 'The baby', 'https://cdn.balkan.app/shared/f
 
 create table memories(
     name varchar(50) primary key, 
-    img varchar(100),
+    img text,
     labels text,
     happy boolean
 );
