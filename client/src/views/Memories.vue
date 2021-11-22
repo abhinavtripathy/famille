@@ -1,6 +1,9 @@
 <template>
     <div>
         <h3>Family Memories!</h3>
+        <b-button variant="primary" @click="filter">Happy Memories Only!</b-button>
+        <br>
+         <br>
     <div id="box">
         <b-row>
 <b-card
@@ -46,20 +49,20 @@ export default {
     },
     methods: {
         getMemories: function () {
-            // this.$http.get('http://localhost:5000/memories')
-            // .then(function (response) {
-            //     // this.memories = response
-            //     // console.log(response['data'])
-                
-            //     pushData(response['data'])
-                
-            // })
-            // .catch(function () {
-            //     console.log("error")
-            // });
             this.$http.get('http://localhost:5000/memories').then(response => { 
             this.memories = response['data']
             })
+        },
+        filter() {
+            let tempArr = []
+            for(let i of this.memories) {
+                if(i['happy'] == true) {
+                    tempArr.push(i)
+                }
+            }
+            console.log(this.memories)
+            console.log(tempArr)
+            this.memories = tempArr
         }
     }
 }
